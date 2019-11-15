@@ -1,3 +1,4 @@
+from collections import defaultdict
 from scipy.stats import binom
 from random import choice
 from random import choices
@@ -20,29 +21,17 @@ def add_nucl(S_1, S_2, p_number_seq, count_nucl):
     version_for_1 = {}
     version_for_2 = {}
     for i in range(len(S_1) - count_nucl + 1):
-        if S_1[i:(i + count_nucl)] not in version_for_1:
-            version_for_1[S_1[i:(i + count_nucl)]] = [i]
-        else:
-            version_for_1[S_1[i:(i + count_nucl)]].append(i)
-        if S_2[i:(i + count_nucl)] not in version_for_2:
-            version_for_2[S_2[i:(i + count_nucl)]] = [len(S_1) - i - count_nucl]
-        else:
-            version_for_2[S_2[i:(i + count_nucl)]].append(len(S_1) - i - count_nucl)
+        version_for_1.setdefault(S_1[i:(i + count_nucl)], []).append(i)
+        version_for_2.setdefault(S_2[i:(i + count_nucl)], []).append(len(S_1) - i - count_nucl)
 
     while (complement(S_1[-count_nucl:]) not in version_for_2) and (
             complement(S_2[:count_nucl]) not in version_for_1):
         if random() < p_number_seq:
             S_1 = S_1 + choices(['A', 'C', 'T', 'G'], weights=[A_weig, C_weig, T_weig, G_weig])[0]
-            if S_1[-count_nucl:] not in version_for_1:
-                version_for_1[S_1[-count_nucl:]] = [len(S_1) - count_nucl]
-            else:
-                version_for_1[S_1[-count_nucl:]].append(len(S_1) - count_nucl)
+            version_for_1.setdefault(S_1[-count_nucl:], []).append(len(S_1) - count_nucl)
         else:
             S_2 = choices(['A', 'C', 'T', 'G'], weights=[A_weig, C_weig, T_weig, G_weig])[0] + S_2
-            if S_2[:count_nucl] not in version_for_2:
-                version_for_2[S_2[:count_nucl]] = [len(S_2) - count_nucl]
-            else:
-                version_for_2[S_2[:count_nucl]].append(len(S_2) - count_nucl)
+            version_for_2.setdefault(S_2[:count_nucl], []).append(len(S_2) - count_nucl)
 
     if complement(S_1[-count_nucl:]) in version_for_2:
         index = choice(version_for_2.get(complement(S_1[-count_nucl:])))
@@ -51,7 +40,6 @@ def add_nucl(S_1, S_2, p_number_seq, count_nucl):
     else:
         index = choice(version_for_1.get(complement(S_2[:count_nucl])))
         S = S_1[:index] + complement(S_2)
-
     return S
 
 
