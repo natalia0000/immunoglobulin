@@ -86,7 +86,5 @@ if __name__ == "__main__":
         count_nucl = 3
 
     S = add_nucl(S_1, S_2, p_number_seq, count_nucl)
-    print(S)
-
     S = exo_work(S, exo_start_delete, exo_stop_delete)
     print(S)
