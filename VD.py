@@ -1,4 +1,3 @@
-from collections import defaultdict
 from scipy.stats import binom
 from random import choice
 from random import choices
@@ -78,8 +77,6 @@ def main_fun(p, p_compl, exo_start_delete, exo_stop_delete):
 
     S_1 = S_1 + reverse_complement(S_1)
     S_2 = S_2 + reverse_complement(S_2)
-
-    print(DNA_pk, S_1, S_2)
 
     if random() < p_compl:
         count_nucl = 2
