@@ -6,16 +6,17 @@ from random import random
 from Bio.Seq import reverse_complement
 from Bio.Seq import complement
 
-p = 0.5  # вероятность для биномиального распределения остановки Артемиды
-p_compl = 0.8  # вероятность того, что хватит двух комплементарных нуклеотидов подряд, чтобы соединить цепочки
+# p = 0.5  # вероятность для биномиального распределения остановки Артемиды
+# p_compl = 0.8  # вероятность того, что хватит двух комплементарных нуклеотидов подряд, чтобы соединить цепочки
 p_number_seq = 0.5  # вероятность того, что нуклеотиды пристраиваются к первой цепочке
 A_weig = 15  # вес нуклеотида А
 C_weig = 35  # вес нуклеотида C
 T_weig = 15  # вес нуклеотида T
 G_weig = 35  # вес нуклеотида G
-exo_start_delete = 0.4  # вероятность того, что экзонуклеаза станет удалять нуклеотиды
-exo_stop_delete = 0.7  # вероятность того, что экзонуклеаза престанет удалять нуклеотиды
 
+
+# exo_start_delete = 0.4  # вероятность того, что экзонуклеаза станет удалять нуклеотиды
+# exo_stop_delete = 0.7  # вероятность того, что экзонуклеаза престанет удалять нуклеотиды
 
 def add_nucl(S_1, S_2, p_number_seq, count_nucl):
     version_for_1 = {}
@@ -50,7 +51,7 @@ def exo_work(S, exo_start_delete, exo_stop_delete):
     if (exo_start_delete + exo_stop_delete) == 0:
         print("Impossible probabilities")
         return "Error"
-    if random() < (exo_start_delete)/(exo_start_delete + exo_stop_delete):
+    if random() < (exo_start_delete) / (exo_start_delete + exo_stop_delete):
         status = 2
     for i in range(n):
         if status == 1:
@@ -68,7 +69,7 @@ def exo_work(S, exo_start_delete, exo_stop_delete):
     return S_new
 
 
-if __name__ == "__main__":
+def main_fun(p, p_compl, exo_start_delete, exo_stop_delete):
     n = 3
     DNA_pk = binom.rvs(n, p, 1)
 
@@ -87,4 +88,4 @@ if __name__ == "__main__":
 
     S = add_nucl(S_1, S_2, p_number_seq, count_nucl)
     S = exo_work(S, exo_start_delete, exo_stop_delete)
-    print(S)
+    return S
