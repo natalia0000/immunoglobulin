@@ -7,6 +7,7 @@ from Bio.Seq import reverse_complement
 from Bio.Seq import complement
 import seaborn
 import argparse
+
 #create a parser
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='VD_model')
@@ -32,6 +33,7 @@ if __name__ == "__main__":
     parser.add_argument('--seq_num', help = 'Desired number of sequences to be displayed', default=100, type = int)
     parser.add_argument('--visual_flag', help='Flag to build the plot of sequences distribution', action='store_true')
     args = parser.parse_args()
+    
 #connect arguments with variables in functions
     p = args.p_art
     p_compl = args.p_compl
@@ -46,7 +48,6 @@ if __name__ == "__main__":
     visual_flag = args.visual_flag
 
 #insert the program
-#make a cycle to get to seq_num:
     sequences = []  # variable for a list of processed nucleotide sequences. program will fill it with # seq_num of sequences.
 
     def add_nucl(S_1, S_2, p_number_seq, count_nucl):
