@@ -128,12 +128,12 @@ if __name__ == "__main__":
     # visualize
     def visual(visual_flag):
         seq_len = []
-        seq_dens = []
         for el in sequences:
             seq_len.append(len(el))
         if visual_flag:
             print(seaborn.distplot(seq_len, axlabel='Length of sequences', bins=20))
         else:
-            for el in seq_len:
-                seq_dens.append(el/seq_num)
-                print(seq_dens)
+            seq_len_c = [[el, seq_len.count(el)] for el in set(seq_len)]
+            for el in seq_len_c:
+                el[1] = float(el[1]) / seq_num
+            print(seq_len_c)
