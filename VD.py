@@ -1,4 +1,3 @@
-from collections import defaultdict
 from scipy.stats import binom
 from random import choice
 from random import choices
@@ -6,17 +5,16 @@ from random import random
 from Bio.Seq import reverse_complement
 from Bio.Seq import complement
 
-# p = 0.5  # вероятность для биномиального распределения остановки Артемиды
-# p_compl = 0.8  # вероятность того, что хватит двух комплементарных нуклеотидов подряд, чтобы соединить цепочки
-p_number_seq = 0.5  # вероятность того, что нуклеотиды пристраиваются к первой цепочке
-A_weig = 15  # вес нуклеотида А
-C_weig = 35  # вес нуклеотида C
-T_weig = 15  # вес нуклеотида T
-G_weig = 35  # вес нуклеотида G
+# p = 0.5  # the probability for the binomial distribution of Artemis stop
+# p_compl = 0.8  # the probability that two complementary nucleotides in a row is enough to connect the chains
+# exo_start_delete = 0.4  # the probability that exonuclease will begin to remove nucleotides
+# exo_stop_delete = 0.7  # the probability that exonuclease stops removing nucleotides
+p_number_seq = 0.5  # the probability that nucleotides attach to the first strand
+A_weig = 15  # nucleotide A weight
+C_weig = 35  # nucleotide C weight
+T_weig = 15  # nucleotide T weight
+G_weig = 35  # nucleotide G weight
 
-
-# exo_start_delete = 0.4  # вероятность того, что экзонуклеаза станет удалять нуклеотиды
-# exo_stop_delete = 0.7  # вероятность того, что экзонуклеаза престанет удалять нуклеотиды
 
 def add_nucl(S_1, S_2, p_number_seq, count_nucl):
     version_for_1 = {}
@@ -78,8 +76,6 @@ def main_fun(p, p_compl, exo_start_delete, exo_stop_delete):
 
     S_1 = S_1 + reverse_complement(S_1)
     S_2 = S_2 + reverse_complement(S_2)
-
-    print(DNA_pk, S_1, S_2)
 
     if random() < p_compl:
         count_nucl = 2

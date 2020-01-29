@@ -1,1 +1,1 @@
-Разработка имитационной модели для формировани V-D и D-J регионов в последовательностях иммуноглобулинов
+Development of a simulation model for the formation of V-D and D-J regions in immunoglobulin sequences
