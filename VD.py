@@ -5,10 +5,7 @@ from random import random
 from Bio.Seq import reverse_complement
 from Bio.Seq import complement
 
-# p = 0.5  # the probability for the binomial distribution of Artemis stop
-# p_compl = 0.8  # the probability that two complementary nucleotides in a row is enough to connect the chains
-# exo_start_delete = 0.4  # the probability that exonuclease will begin to remove nucleotides
-# exo_stop_delete = 0.7  # the probability that exonuclease stops removing nucleotides
+
 p_number_seq = 0.5  # the probability that nucleotides attach to the first strand
 A_weig = 15  # nucleotide A weight
 C_weig = 35  # nucleotide C weight
@@ -17,6 +14,15 @@ G_weig = 35  # nucleotide G weight
 
 
 def add_nucl(S_1, S_2, p_number_seq, count_nucl):
+    """
+    Adds nucleotides until the linking happens
+
+    :param S_1: the first sequence
+    :param S_2: the second sequence
+    :param p_number_seq: the probability that nucleotides attach to the first strand
+    :param count_nucl: the number of nucleotides that enough for linkage
+    :return: linked sequence
+    """
     version_for_1 = {}
     version_for_2 = {}
     for i in range(len(S_1) - count_nucl + 1):
@@ -43,6 +49,15 @@ def add_nucl(S_1, S_2, p_number_seq, count_nucl):
 
 
 def exo_work(S, exo_start_delete, exo_stop_delete):
+    """
+    Produces sequence as it was reduced by exonuclease.
+    Function bases on markov chain with two states: delete nucleotides and not delete.
+
+    :param S: the sequence to be reduced
+    :param exo_start_delete: the probability that exonuclease will begin to remove nucleotides
+    :param exo_stop_delete: the probability that exonuclease stops removing nucleotides
+    :return: sequence as it was reduced by exonuclease
+    """
     n = len(S)
     flag_arr = []
     status = 1
@@ -68,6 +83,15 @@ def exo_work(S, exo_start_delete, exo_stop_delete):
 
 
 def main_fun(p, p_compl, exo_start_delete, exo_stop_delete):
+    """
+    Gives sequence of nucleotides that can be possible junction between V and D regions
+
+    :param p: the probability for the binomial distribution of Artemis stop
+    :param p_compl: the probability that two complementary nucleotides in a row is enough to connect the chains
+    :param exo_start_delete: the probability that exonuclease will begin to remove nucleotides
+    :param exo_stop_delete: the probability that exonuclease stops removing nucleotides
+    :return: sequence of nucleotides that can be possible junction between V and D regions
+    """
     n = 3
     DNA_pk = binom.rvs(n, p, 1)
 
