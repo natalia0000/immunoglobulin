@@ -1,5 +1,5 @@
 # V-D and D-J junction regions generation model 
-The development of a simulation model for generation of V-D and D-J regions in immunoglobulins’ nucleotide sequences
+The development of a simulation model for generation of V-D and D-J regions in immunoglobulinsâ€™ nucleotide sequences
 
 ### Goals: 
 - Selection of variable parameters according to real data
@@ -31,7 +31,7 @@ git clone https://github.com/natalia0000/immunoglobulin.git
 
 ### Result example:
 
-![alt text](https://github.com/natalia0000/immunoglobulin/sample_plot.jpg)
+![alt text](https://github.com/natalia0000/immunoglobulin/blob/master/sample_plot.jpg)
 
 Parameters for that plot:
 ```
@@ -47,4 +47,4 @@ Red is distribution from VD model
 
 ### Reference
 
-Kenneth Murphy, Casey Weaver  "Janeway’s Immunobiology, Ninth Edition." 2016. Garland Science: New York, New York.
+Kenneth Murphy, Casey Weaver  "Janewayâ€™s Immunobiology, Ninth Edition." 2016. Garland Science: New York, New York.
