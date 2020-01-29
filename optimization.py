@@ -1,3 +1,7 @@
+"""
+Optimization script can be used for finding optimal VD modal parameters
+for given distribution of junction lengths
+"""
 from VD import main_fun
 from scipy.optimize import minimize
 from scipy.optimize import basinhopping
@@ -60,6 +64,7 @@ for point in points:
 print(x_arr)
 print(fun_arr)
 
+
+# uncomment following code to run additional optimizer for refinement
 # result2 = basinhopping(mod_for_opt, [0.21, 0.11, 0.21, 0.21], stepsize=0.01)
 # print(result2.fun, result2.x)
-# additional optimizer for refinement
